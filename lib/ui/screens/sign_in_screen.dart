@@ -6,8 +6,14 @@ class SignInScreen extends StatelessWidget {
   static const String name = '/sign-in';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScreenBackground(child: ),
+    return const Scaffold(
+      body: ScreenBackground(
+          child: Column(
+            children: [
+
+            ],
+          )
+      ),
     );
   }
 }
