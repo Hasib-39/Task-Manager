@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
+import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
 import 'package:task_manager/ui/utils/app_colors.dart';
 
@@ -55,6 +56,8 @@ class TaskManagerApp extends StatelessWidget {
           widget = const SplashScreen();
         } else if(settings.name == SignInScreen.name){
           widget = const SignInScreen();
+        } else if (settings.name == SignUpScreen.name){
+          widget = const SignUpScreen();
         }
         return MaterialPageRoute(builder: (_) => widget);
       },

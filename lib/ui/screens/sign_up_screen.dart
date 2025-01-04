@@ -1,21 +1,24 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screens/sign_up_screen.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 import '../utils/app_colors.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
-  static const String name = '/sign-in';
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+  static const String name = '/sign-up';
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends State<SignUpScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _lastNameTEController = TextEditingController();
+  final TextEditingController _mobileTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -33,8 +36,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 80,),
-                    Text("Get Started With",
-                     style: textTheme.titleLarge,
+                    Text("Join With Us",
+                      style: textTheme.titleLarge,
                     ),
                     const SizedBox(height: 24,),
                     TextFormField(
@@ -42,6 +45,30 @@ class _SignInScreenState extends State<SignInScreen> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         hintText: 'Email',
+                      ),
+                    ),
+                    const SizedBox(height: 8,),
+                    TextFormField(
+                      controller: _firstNameTEController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: 'First Name',
+                      ),
+                    ),
+                    const SizedBox(height: 8,),
+                    TextFormField(
+                      controller: _lastNameTEController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: 'Last Name',
+                      ),
+                    ),
+                    const SizedBox(height: 8,),
+                    TextFormField(
+                      controller: _mobileTEController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        hintText: 'Mobile',
                       ),
                     ),
                     const SizedBox(height: 8,),
@@ -54,32 +81,24 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(height: 24,),
                     ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.themeColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.themeColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            fixedSize: const  Size.fromWidth(double.maxFinite),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                            foregroundColor: Colors.white,
+                            textStyle: const TextStyle(
+                                fontSize: 16
+                            )
                         ),
-                        fixedSize: const  Size.fromWidth(double.maxFinite),
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(
-                          fontSize: 16
-                        )
-                      ),
                         onPressed: (){},
                         child: const Icon(Icons.arrow_circle_right_outlined)
                     ),
                     const SizedBox(height: 48,),
                     Center(
-                      child: Column(
-                        children: [
-                          TextButton(
-                              onPressed: (){},
-                              child: const Text("Forgot Password?"),
-                          ),
-                          _buildSignUpSection(),
-                        ],
-                      ),
+                      child: _buildSignInSection(),
                     )
                   ],
                 ),
@@ -89,23 +108,23 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-  Widget _buildSignUpSection(){
+  Widget _buildSignInSection(){
     return RichText(
         text: TextSpan(
-            text: "Don't have an account? ",
+            text: "Already have an account? ",
             style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w600
             ),
             children: [
               TextSpan(
-                text: "Sign Up",
+                text: "Sign In",
                 style: TextStyle(
                     color: AppColors.themeColor,
                     fontWeight: FontWeight.w600
                 ),
                 recognizer: TapGestureRecognizer()..onTap = (){
-                  Navigator.pushNamed(context, SignUpScreen.name);
+                  Navigator.pop(context);
                 },
               )
             ]
@@ -116,6 +135,9 @@ class _SignInScreenState extends State<SignInScreen> {
   void dispose() {
     _emailTEController.dispose();
     _passwordTEController.dispose();
+    _firstNameTEController.dispose();
+    _lastNameTEController.dispose();
+    _mobileTEController.dispose();
     super.dispose();
   }
 }
