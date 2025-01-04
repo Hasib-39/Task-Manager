@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:task_manager/ui/screens/reset_password_screen.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
-import 'package:task_manager/ui/screens/sign_up_screen.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
 import '../utils/app_colors.dart';
@@ -38,12 +38,9 @@ class _SignInScreenState extends State<ForgotPasswordVerifyOtpScreen> {
                       style: textTheme.titleLarge,
                     ),
                     const SizedBox(height: 4,),
-                    const Text(
+                    Text(
                       "A 6 digit OTP has been sent to your email address",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500
-                      ),
+                      style: textTheme.titleSmall,
                     ),
                     const SizedBox(height: 24,),
                     _buildPinCodeTextField(),
@@ -61,7 +58,9 @@ class _SignInScreenState extends State<ForgotPasswordVerifyOtpScreen> {
                                 fontSize: 16
                             )
                         ),
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.pushNamed(context, ResetPasswordScreen.name);
+                        },
                         child: const Icon(Icons.arrow_circle_right_outlined)
                     ),
                     const SizedBox(height: 48,),
