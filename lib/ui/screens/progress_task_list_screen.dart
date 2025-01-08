@@ -6,14 +6,14 @@ import '../widgets/task_item_widget.dart';
 import '../widgets/task_status_summary_counter_widget.dart';
 import '../widgets/tm_app_bar.dart';
 
-class NewTaskListScreen extends StatefulWidget {
-  const NewTaskListScreen({super.key});
+class ProgressTaskListScreen extends StatefulWidget {
+  const ProgressTaskListScreen({super.key});
 
   @override
-  State<NewTaskListScreen> createState() => _NewTaskListScreenState();
+  State<ProgressTaskListScreen> createState() => _ProgressTaskListScreenState();
 }
 
-class _NewTaskListScreenState extends State<NewTaskListScreen> {
+class _ProgressTaskListScreenState extends State<ProgressTaskListScreen> {
   @override
   Widget build(BuildContext context) {
 
@@ -21,16 +21,9 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
     return Scaffold(
       appBar: TMAppBar(),
       body: ScreenBackground(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildTasksSummaryByStatus(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: _buildTaskListView(),
-              )
-            ],
-          ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: _buildTaskListView(),
         ),
       ),
     );
@@ -38,9 +31,7 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
 
   Widget _buildTaskListView() {
     return ListView.builder(
-              shrinkWrap: true,
                 itemCount: 10,
-                primary: false,
                 itemBuilder: (context, index){
                 return TaskItemWidget();
                 }
