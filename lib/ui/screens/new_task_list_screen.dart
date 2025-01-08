@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/utils/app_colors.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
@@ -33,6 +34,9 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.pushNamed(context, AddNewTaskScreen.name);
+      }, child: Icon(Icons.add),),
     );
   }
 
