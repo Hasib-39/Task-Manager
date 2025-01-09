@@ -71,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: (){
                           Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
                         },
-                        child: const Icon(Icons.arrow_circle_right_outlined)
+                        child: const Icon(Icons.arrow_circle_right_outlined, color: Colors.white,)
                     ),
                     const SizedBox(height: 48,),
                     Center(
