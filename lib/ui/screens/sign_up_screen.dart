@@ -110,6 +110,9 @@ class _SignInScreenState extends State<SignUpScreen> {
                         if(value?.trim().isEmpty ?? true){
                           return 'Enter your password';
                         }
+                        if(value!.length < 6){
+                          return 'Enter a password more than 6 letters';
+                        }
                         return null;
                       },
                     ),
