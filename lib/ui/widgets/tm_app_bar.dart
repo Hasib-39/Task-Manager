@@ -43,7 +43,8 @@ class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-          IconButton(onPressed: (){
+          IconButton(onPressed: () async {
+            await AuthController.clearUserData();
             Navigator.pushNamedAndRemoveUntil(context, SignInScreen.name, (predicate) => false);
           }, icon: const Icon(Icons.logout, color: Colors.white,))
 
