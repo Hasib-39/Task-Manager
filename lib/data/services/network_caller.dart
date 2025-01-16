@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:task_manager/ui/controllers/auth_controller.dart';
 
 
 class NetworkResponse{
@@ -47,7 +48,8 @@ class NetworkCaller{
       debugPrint('URL => $url');
       Response response = await post(uri,
           headers: {
-            'content-type' : 'application/json'
+            'content-type' : 'application/json',
+            'token' : AuthController.accessToken ?? ''
           },
           body: jsonEncode(body));
       debugPrint('Response Code => ${response.statusCode}');
