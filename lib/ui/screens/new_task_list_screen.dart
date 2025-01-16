@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/data/models/task_count_by_status_model.dart';
 import 'package:task_manager/data/models/task_count_model.dart';
+import 'package:task_manager/data/models/task_list_by_status_model.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utils/urls.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
@@ -22,19 +23,20 @@ class NewTaskListScreen extends StatefulWidget {
 
 class _NewTaskListScreenState extends State<NewTaskListScreen> {
   bool _getTaskCountByStatusInProgress = false;
+  bool _getNewTaskListInProgress = false;
   TaskCountByStatusModel? taskCountByStatusModel;
+  TaskListByStatusModel? newTaskListModel;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getTaskCountByStatus();
+    _getNewTaskList();
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: const TMAppBar(),
       body: ScreenBackground(
@@ -44,7 +46,11 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
               _buildTasksSummaryByStatus(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: _buildTaskListView(),
+                child: Visibility(
+                  visible: _getNewTaskListInProgress == false,
+                    replacement: const CenteredCircularProgressIndicator(),
+                    child: _buildTaskListView()
+                ),
               )
             ],
           ),
@@ -59,10 +65,12 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
   Widget _buildTaskListView() {
     return ListView.builder(
               shrinkWrap: true,
-                itemCount: 10,
+                itemCount: newTaskListModel?.taskList?.length ?? 0,
                 primary: false,
                 itemBuilder: (context, index){
-                return TaskItemWidget();
+                return TaskItemWidget(
+                  taskModel: newTaskListModel!.taskList![index],
+                );
                 }
             );
   }
@@ -92,6 +100,19 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
               ),
             ),
           );
+  }
+
+  Future<void> _getNewTaskList() async {
+    _getNewTaskListInProgress = true;
+    setState(() {});
+    final NetworkResponse response = await NetworkCaller.getRequest(url: Urls.taskListByStatusUrl('New'));
+    if(response.isSuccess){
+      newTaskListModel = TaskListByStatusModel.fromJson(response.responseData!);
+    } else{
+      showSnackBarMessage(context, response.errorMessage);
+    }
+    _getNewTaskListInProgress = false;
+    setState(() {});
   }
 
   Future<void> _getTaskCountByStatus() async {

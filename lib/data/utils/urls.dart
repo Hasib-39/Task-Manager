@@ -4,4 +4,5 @@ class Urls{
   static const String signInUrl = '$_baseUrl/login';
   static const String createTaskUrl = '$_baseUrl/createTask';
   static const String taskCountByStatus = '$_baseUrl/taskStatusCount';
+  static String taskListByStatusUrl(String status) => '$_baseUrl/listTaskByStatus/$status';
 }
