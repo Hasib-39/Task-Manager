@@ -13,11 +13,14 @@ import 'package:task_manager/ui/utils/app_colors.dart';
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
 
+  static GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
+      navigatorKey: navigationKey,
       theme: ThemeData(
         colorSchemeSeed: AppColors.themeColor,
         textTheme: const TextTheme(

@@ -7,6 +7,7 @@ class TaskItemWidget extends StatelessWidget {
   });
 
   final TaskModel taskModel;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,9 +29,9 @@ class TaskItemWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.blue
+                      color: _getStatusColor(taskModel.status ?? 'New'),
                   ),
-                  child: const Text("New", style: TextStyle(color: Colors.white),),
+                  child:  Text(taskModel.status ?? 'New', style: const TextStyle(color: Colors.white),),
                 ),
                 Row(
                   children: [
@@ -44,5 +45,17 @@ class TaskItemWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color? _getStatusColor(String status){
+    if(status == 'New'){
+      return Colors.blue;
+    } else if(status == 'Progress'){
+      return Colors.purple;
+    } else if(status == 'Cancelled'){
+      return Colors.red;
+    } else if (status == 'Completed'){
+      return Colors.green;
+    }
   }
 }
