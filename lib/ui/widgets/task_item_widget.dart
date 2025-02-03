@@ -35,8 +35,8 @@ class TaskItemWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.redAccent,)),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.edit))
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.delete, color: Colors.redAccent,)),
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.edit))
                   ],
                 )
               ],
