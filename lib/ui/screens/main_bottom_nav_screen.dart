@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/new_task_list_screen.dart';
 import 'package:task_manager/ui/screens/progress_task_list_screen.dart';
-
-import 'cancelled_task_list_screen.dart';
-import 'completed_task_list_screen.dart';
-import 'new_task_list_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
 
   static const String name = '/home';
+
   @override
   State<MainBottomNavScreen> createState() => _MainBottomNavScreenState();
 }
@@ -18,8 +16,8 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   final List<Widget> _screens = const [
     NewTaskListScreen(),
     ProgressTaskListScreen(),
-    CompletedTaskListScreen(),
-    CancelledTaskListScreen(),
+    NewTaskListScreen(),
+    NewTaskListScreen(),
   ];
 
   @override
@@ -28,18 +26,17 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
       body: _screens[_selectedIndex],
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-        onDestinationSelected: (int index){
+        onDestinationSelected: (int index) {
           _selectedIndex = index;
-          setState(() {
-
-          });
+          setState(() {});
         },
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.new_label_outlined), label: "New"),
-          NavigationDestination(icon: Icon(Icons.refresh), label: "Progress"),
-          NavigationDestination(icon: Icon(Icons.done), label: "Completed"),
-          NavigationDestination(icon: Icon(Icons.cancel_outlined), label: "Cancelled"),
-
+        destinations: const [
+          NavigationDestination(
+              icon: Icon(Icons.new_label_outlined), label: 'New'),
+          NavigationDestination(icon: Icon(Icons.refresh), label: 'Progress'),
+          NavigationDestination(icon: Icon(Icons.done), label: 'Completed'),
+          NavigationDestination(
+              icon: Icon(Icons.cancel_outlined), label: 'Cancelled'),
         ],
       ),
     );

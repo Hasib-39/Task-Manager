@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class TaskStatusSummaryCounterWidget extends StatelessWidget {
   const TaskStatusSummaryCounterWidget({
-    super.key, required this.count, required this.title,
+    super.key,
+    required this.title,
+    required this.count,
   });
 
-  final String count;
   final String title;
+  final String count;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class TaskStatusSummaryCounterWidget extends StatelessWidget {
       elevation: 0,
       color: Colors.white,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Column(
           children: [
-            Text(count, style: textTheme.titleLarge,),
-            Text(title, style: textTheme.titleSmall,),
+            Text(count, style: textTheme.titleLarge),
+            Text(title, style: textTheme.titleSmall),
           ],
         ),
       ),
