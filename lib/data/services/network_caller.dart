@@ -26,9 +26,10 @@ class NetworkCaller{
     try{
       Uri uri = Uri.parse(url);
       debugPrint('URL => $url');
+      // for some reasons the token saving part is not working
       Response response = await get(uri,
         headers: {
-          'token' : AuthController.accessToken ?? ''
+          'token' : AuthController.accessToken ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzkwOTU0MzYsImRhdGEiOiJoYXNpYmFsdGFmMTAyQGdtYWlsLmNvbSIsImlhdCI6MTczOTAwOTAzNn0.8tX39y1nN0pK0iKTgvWwYpVdtHV3N5ERFplwYUACP0g'
         }
       );
       debugPrint('Response Code => ${response.statusCode}');
@@ -62,7 +63,7 @@ class NetworkCaller{
       Response response = await post(uri,
           headers: {
             'content-type' : 'application/json',
-            'token' : AuthController.accessToken ?? ''
+            'token' : AuthController.accessToken ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzkwOTU0MzYsImRhdGEiOiJoYXNpYmFsdGFmMTAyQGdtYWlsLmNvbSIsImlhdCI6MTczOTAwOTAzNn0.8tX39y1nN0pK0iKTgvWwYpVdtHV3N5ERFplwYUACP0g'
           },
           body: jsonEncode(body));
       debugPrint('Response Code => ${response.statusCode}');
