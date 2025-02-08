@@ -19,11 +19,13 @@ class TaskStatusSummaryCounterWidget extends StatelessWidget {
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-        child: Column(
-          children: [
-            Text(count, style: textTheme.titleLarge),
-            Text(title, style: textTheme.titleSmall),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(count, style: textTheme.titleLarge),
+              Text(title, style: textTheme.titleSmall),
+            ],
+          ),
         ),
       ),
     );

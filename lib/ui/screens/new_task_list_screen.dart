@@ -68,6 +68,9 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
       itemCount: newTaskListModel?.taskList?.length ?? 0,
       itemBuilder: (context, index) {
         return TaskItemWidget(
+          onUpdate: (){
+            setState(() {});
+          },
           taskModel: newTaskListModel!.taskList![index],
         );
       },
