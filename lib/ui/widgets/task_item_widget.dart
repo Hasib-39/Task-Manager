@@ -44,8 +44,8 @@ class TaskItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {}, // Implement delete logic later
-                      icon: const Icon(Icons.delete),
+                      onPressed: () => _showDeleteConfirmationDialog(context),
+                      icon: const Icon(Icons.delete, color: Colors.red),
                     ),
                     IconButton(
                       onPressed: () {
@@ -94,8 +94,34 @@ class TaskItemWidget extends StatelessWidget {
               await NetworkCaller.getRequest(url: Urls.updateTaskStatusUrl(selectedStatus, taskModel.sId));
               onUpdate(); // Refresh UI
               Navigator.pop(context);
+              onUpdate();
             },
             child: const Text("Save"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Delete Task"),
+        content: const Text("Are you sure you want to delete this task?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await NetworkCaller.getRequest(url: Urls.deleteTaskUrl(taskModel.sId));
+              onUpdate(); // Refresh UI
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text("Delete"),
           ),
         ],
       ),
