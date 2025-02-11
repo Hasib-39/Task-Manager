@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/controller_binder.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_email_screen.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_otp_screen.dart';
@@ -17,9 +19,9 @@ class TaskManagerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialBinding: ControllerBinder(),
       navigatorKey: navigatorKey,
       theme: ThemeData(
         colorSchemeSeed: AppColors.themeColor,
@@ -45,41 +47,26 @@ class TaskManagerApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.themeColor,
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             fixedSize: const Size.fromWidth(double.maxFinite),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 10,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             foregroundColor: Colors.white,
             textStyle: const TextStyle(fontSize: 16),
           ),
         ),
       ),
-      onGenerateRoute: (RouteSettings settings) {
-        late Widget widget;
-        if (settings.name == SplashScreen.name) {
-          widget = const SplashScreen();
-        } else if (settings.name == SignInScreen.name) {
-          widget = const SignInScreen();
-        } else if (settings.name == SignUpScreen.name) {
-          widget = const SignUpScreen();
-        } else if (settings.name == ForgotPasswordVerifyEmailScreen.name) {
-          widget = const ForgotPasswordVerifyEmailScreen();
-        } else if (settings.name == ForgotPasswordVerifyOtpScreen.name) {
-          widget = const ForgotPasswordVerifyOtpScreen();
-        } else if (settings.name == ResetPasswordScreen.name) {
-          widget = const ResetPasswordScreen();
-        } else if (settings.name == MainBottomNavScreen.name) {
-          widget = const MainBottomNavScreen();
-        } else if (settings.name == AddNewTaskScreen.name) {
-          widget = const AddNewTaskScreen();
-        } else if (settings.name == UpdateProfileScreen.name) {
-          widget = const UpdateProfileScreen();
-        }
-        return MaterialPageRoute(builder: (ctx) => widget);
-      },
+      getPages: [
+        GetPage(name: SplashScreen.name, page: () => const SplashScreen()),
+        GetPage(name: SignInScreen.name, page: () => const SignInScreen()),
+        GetPage(name: SignUpScreen.name, page: () => const SignUpScreen()),
+        GetPage(name: ForgotPasswordVerifyEmailScreen.name, page: () => const ForgotPasswordVerifyEmailScreen()),
+        GetPage(name: ForgotPasswordVerifyOtpScreen.name, page: () => const ForgotPasswordVerifyOtpScreen()),
+        GetPage(name: ResetPasswordScreen.name, page: () => const ResetPasswordScreen()),
+        GetPage(name: MainBottomNavScreen.name, page: () => const MainBottomNavScreen()),
+        GetPage(name: AddNewTaskScreen.name, page: () => const AddNewTaskScreen()),
+        GetPage(name: UpdateProfileScreen.name, page: () => const UpdateProfileScreen()),
+      ],
+      initialRoute: SplashScreen.name,
     );
   }
 }
