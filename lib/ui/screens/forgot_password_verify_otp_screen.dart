@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/reset_password_screen.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
@@ -92,11 +93,11 @@ class _ForgotPasswordVerifyOtpScreenState
       text: TextSpan(
         text: "Have an account? ",
         style:
-        const TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
+        GoogleFonts.poppins(color: Colors.black54, fontWeight: FontWeight.w600),
         children: [
           TextSpan(
             text: 'Sign in',
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
               color: AppColors.themeColor,
             ),
             recognizer: TapGestureRecognizer()

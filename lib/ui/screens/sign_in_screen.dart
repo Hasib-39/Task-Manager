@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/ui/controllers/sign_in_controller.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_email_screen.dart';
 import 'package:task_manager/ui/screens/main_bottom_nav_screen.dart';
@@ -123,11 +124,11 @@ class _SignInScreenState extends State<SignInScreen> {
       text: TextSpan(
         text: "Don't have an account? ",
         style:
-        const TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
+        GoogleFonts.poppins(color: Colors.black54, fontWeight: FontWeight.w600),
         children: [
           TextSpan(
             text: 'Sign up',
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
               color: AppColors.themeColor,
             ),
             recognizer: TapGestureRecognizer()

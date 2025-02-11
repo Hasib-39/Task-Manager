@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/ui/controllers/sign_up_controller.dart';
 import 'package:task_manager/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
@@ -130,7 +131,7 @@ class _SignInScreenState extends State<SignUpScreen> {
                                   fixedSize: const  Size.fromWidth(double.maxFinite),
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   foregroundColor: Colors.white,
-                                  textStyle: const TextStyle(
+                                  textStyle: GoogleFonts.poppins(
                                       fontSize: 16
                                   )
                               ),
@@ -186,14 +187,14 @@ class _SignInScreenState extends State<SignUpScreen> {
     return RichText(
         text: TextSpan(
             text: "Already have an account? ",
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
                 color: Colors.black54,
                 fontWeight: FontWeight.w600
             ),
             children: [
               TextSpan(
                 text: "Sign In",
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                     color: AppColors.themeColor,
                     fontWeight: FontWeight.w600
                 ),

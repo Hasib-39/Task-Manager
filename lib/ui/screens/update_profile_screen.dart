@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:task_manager/ui/controllers/auth_controller.dart';
 import 'package:task_manager/ui/controllers/update_profile_controller.dart';
@@ -144,9 +145,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       topLeft: Radius.circular(8),
                       bottomLeft: Radius.circular(8))),
               alignment: Alignment.center,
-              child: const Text(
+              child: Text(
                 'Photo',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                 ),
               ),

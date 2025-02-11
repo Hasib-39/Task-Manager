@@ -13,12 +13,12 @@ class ControllerBinder extends Bindings {
   void dependencies() {
     Get.lazyPut(() => SignInController());
     Get.put(NewTaskController());
-    Get.put(CancelledTaskController());
-    Get.put(CompletedTaskController());
-    Get.put(ProgressTaskController());
-    Get.put(AddNewTaskController());
-    Get.put(UpdateProfileController());
-    Get.put(SignUpController());
+    Get.lazyPut(() => CancelledTaskController());
+    Get.lazyPut(() => CompletedTaskController());
+    Get.lazyPut(() => ProgressTaskController());
+    Get.lazyPut(() => AddNewTaskController());
+    Get.lazyPut(() => UpdateProfileController());
+    Get.lazyPut(() => SignUpController());
     Get.put(TaskCountByStatusController());
   }
 }

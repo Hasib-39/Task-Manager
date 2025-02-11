@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/controller_binder.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_email_screen.dart';
@@ -25,24 +26,24 @@ class TaskManagerApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       theme: ThemeData(
         colorSchemeSeed: AppColors.themeColor,
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
+        textTheme: TextTheme(
+          titleLarge: GoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.w600,
           ),
-          titleSmall: TextStyle(
+          titleSmall: GoogleFonts.poppins(
             color: Colors.grey,
             fontWeight: FontWeight.w500,
           ),
         ),
-        inputDecorationTheme: const InputDecorationTheme(
+        inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           fillColor: Colors.white,
-          hintStyle: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-          border: OutlineInputBorder(borderSide: BorderSide.none),
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+          hintStyle: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Colors.grey),
+          border: const OutlineInputBorder(borderSide: BorderSide.none),
+          enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
+          focusedBorder: const OutlineInputBorder(borderSide: BorderSide.none),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -51,7 +52,7 @@ class TaskManagerApp extends StatelessWidget {
             fixedSize: const Size.fromWidth(double.maxFinite),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             foregroundColor: Colors.white,
-            textStyle: const TextStyle(fontSize: 16),
+            textStyle: GoogleFonts.poppins(fontSize: 16),
           ),
         ),
       ),

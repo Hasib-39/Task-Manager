@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/data/models/task_model.dart';
 
 import '../../data/services/network_caller.dart';
@@ -37,7 +38,7 @@ class TaskItemWidget extends StatelessWidget {
                   ),
                   child: Text(
                     taskModel.status ?? 'New',
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       color: Colors.white,
                     ),
                   ),
