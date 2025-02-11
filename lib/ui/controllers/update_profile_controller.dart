@@ -23,7 +23,7 @@ class UpdateProfileController extends GetxController{
     };
 
     if (pickedImage != null) {
-      List<int> imageBytes = await pickedImage!.readAsBytes();
+      List<int> imageBytes = await pickedImage.readAsBytes();
       requestBody['photo'] = base64Encode(imageBytes);
     }
     if (password.isNotEmpty) {

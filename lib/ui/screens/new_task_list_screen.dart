@@ -124,10 +124,4 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
       showSnackBarMessage(context, _newTaskController.errorMessage!);
     }
   }
-
-  // Function to reload data
-  Future<void> _reloadData() async {
-    _getTaskCountByStatus(); // Fetch task count by status again
-    await _getNewTaskList(); // Fetch new task list again
-  }
 }
