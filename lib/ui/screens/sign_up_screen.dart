@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/data/services/network_caller.dart';
 import 'package:task_manager/data/utils/urls.dart';
-import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/snack_bar_message.dart';
@@ -195,19 +195,19 @@ class _SignInScreenState extends State<SignUpScreen> {
     return RichText(
         text: TextSpan(
             text: "Already have an account? ",
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w600
             ),
             children: [
               TextSpan(
                 text: "Sign In",
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.themeColor,
                     fontWeight: FontWeight.w600
                 ),
                 recognizer: TapGestureRecognizer()..onTap = (){
-                  Navigator.pop(context);
+                  Get.back();
                 },
               )
             ]

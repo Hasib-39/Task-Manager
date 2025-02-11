@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/data/models/task_model.dart';
 
 import '../../data/services/network_caller.dart';
@@ -84,12 +85,12 @@ class TaskItemWidget extends StatelessWidget {
           },
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
+          TextButton(onPressed: () => Get.back(), child: const Text("Cancel")),
           ElevatedButton(
             onPressed: () async {
               taskModel.status = selectedStatus;
               await NetworkCaller.getRequest(url: Urls.updateTaskStatusUrl(selectedStatus, taskModel.sId));
-              Navigator.pop(context);
+              Get.back();
             },
             child: const Text("Save"),
           ),
@@ -106,13 +107,13 @@ class TaskItemWidget extends StatelessWidget {
         content: const Text("Are you sure you want to delete this task?"),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Get.back(),
             child: const Text("Cancel"),
           ),
           ElevatedButton(
             onPressed: () async {
               await NetworkCaller.getRequest(url: Urls.deleteTaskUrl(taskModel.sId));
-              Navigator.pop(context);
+              Get.back();
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             child: const Text("Delete"),

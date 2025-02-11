@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/reset_password_screen.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
@@ -47,7 +48,7 @@ class _ForgotPasswordVerifyOtpScreenState
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, ResetPasswordScreen.name);
+                      Get.toNamed(ResetPasswordScreen.name);
                     },
                     child: const Icon(Icons.arrow_circle_right_outlined),
                   ),
@@ -100,8 +101,8 @@ class _ForgotPasswordVerifyOtpScreenState
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, SignInScreen.name, (value) => false);
+                Get.offAllNamed(
+                     SignInScreen.name);
               },
           )
         ],
