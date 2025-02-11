@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:task_manager/ui/controllers/add_new_task_controller.dart';
 import 'package:task_manager/ui/controllers/cancelled_task_controller.dart';
 import 'package:task_manager/ui/controllers/completed_task_controller.dart';
 import 'package:task_manager/ui/controllers/new_task_controller.dart';
@@ -12,5 +13,6 @@ class ControllerBinder extends Bindings {
     Get.put(CancelledTaskController());
     Get.put(CompletedTaskController());
     Get.put(ProgressTaskController());
+    Get.put(AddNewTaskController());
   }
 }
