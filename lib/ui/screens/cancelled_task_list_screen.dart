@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:task_manager/data/models/task_count_by_status_model.dart';
 import 'package:task_manager/data/models/task_count_model.dart';
 import 'package:task_manager/data/models/task_model.dart';
-import 'package:task_manager/data/services/network_caller.dart';
-import 'package:task_manager/data/utils/urls.dart';
 import 'package:task_manager/ui/controllers/cancelled_task_controller.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/widgets/centered_circular_progress_indicator.dart';
@@ -14,6 +12,8 @@ import 'package:task_manager/ui/widgets/task_item_widget.dart';
 import 'package:task_manager/ui/widgets/task_status_summary_counter_widget.dart';
 import 'package:task_manager/ui/widgets/tm_app_bar.dart';
 
+import '../controllers/task_count_by_status_controller.dart';
+
 class CancelledTaskListScreen extends StatefulWidget {
   const CancelledTaskListScreen({super.key});
 
@@ -22,9 +22,9 @@ class CancelledTaskListScreen extends StatefulWidget {
 }
 
 class _CancelledTaskListScreenState extends State<CancelledTaskListScreen> {
-  bool _getTaskCountByStatusInProgress = false;
   TaskCountByStatusModel? taskCountByStatusModel;
   final CancelledTaskController _cancelledTaskController = Get.find<CancelledTaskController>();
+  final TaskCountByStatusController _taskCountByStatusController = Get.find<TaskCountByStatusController>();
 
   @override
   void initState() {
@@ -80,43 +80,39 @@ class _CancelledTaskListScreenState extends State<CancelledTaskListScreen> {
   }
 
   Widget _buildTasksSummaryByStatus() {
-    return Visibility(
-      visible: _getTaskCountByStatusInProgress == false,
-      replacement: const CenteredCircularProgressIndicator(),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: taskCountByStatusModel?.taskByStatusList?.length ?? 0,
-            itemBuilder: (context, index) {
-              final TaskCountModel model =
-              taskCountByStatusModel!.taskByStatusList![index];
-              return TaskStatusSummaryCounterWidget(
-                title: model.sId ?? '',
-                count: model.sum.toString(),
-              );
-            },
+    return GetBuilder<TaskCountByStatusController>(
+      builder: (controller) {
+        return Visibility(
+          visible: controller.inProgress == false,
+          replacement: const CenteredCircularProgressIndicator(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.taskByStatusList.length,
+                itemBuilder: (context, index) {
+                  final TaskCountModel model =
+                  controller.taskByStatusList[index];
+                  return TaskStatusSummaryCounterWidget(
+                    title: model.sId ?? '',
+                    count: model.sum.toString(),
+                  );
+                },
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 
   Future<void> _getTaskCountByStatus() async {
-    _getTaskCountByStatusInProgress = true;
-    setState(() {});
-    final NetworkResponse response =
-    await NetworkCaller.getRequest(url: Urls.taskCountByStatusUrl);
-    if (response.isSuccess) {
-      taskCountByStatusModel =
-          TaskCountByStatusModel.fromJson(response.responseData!);
-    } else {
-      showSnackBarMessage(context, response.errorMessage);
+    final bool isSuccess = await _taskCountByStatusController.getTaskCountByStatus();
+    if (!isSuccess) {
+      showSnackBarMessage(context, _taskCountByStatusController.errorMessage!);
     }
-    _getTaskCountByStatusInProgress = false;
-    setState(() {});
   }
 
   Future<void> _getCancelledTaskList() async {
